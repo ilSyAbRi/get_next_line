@@ -6,9 +6,11 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:29:44 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/11/28 17:47:13 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/11/30 18:40:35 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
