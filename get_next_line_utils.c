@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:29:44 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/11/30 18:40:35 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/02 16:12:25 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,58 +38,31 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-	{
-		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
-		i++;
-	}
-	return (dest);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*ptr;
 	size_t	len_s1;
 	size_t	len_s2;
+	char	*out;
+	size_t	i;
+	size_t	j;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
+	i = 0;
+	j = 0;
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
-	ptr = malloc(len_s1 + len_s2 + 1);
-	if (ptr == NULL)
+	out = malloc(len_s1 + len_s2 + 1);
+	if (out == NULL)
 		return (NULL);
-	ft_memcpy(ptr, s1, len_s1);
-	ft_memcpy(ptr + len_s1, s2, len_s2);
-	ptr[len_s1 + len_s2] = '\0';
-	return (ptr);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*ptr;
-
-	if (s == NULL)
-		return (NULL);
-	if (start >= ft_strlen(s))
+	while (i < len_s1)
 	{
-		ptr = malloc(1);
-		if (ptr == NULL)
-			return (NULL);
-		ptr[0] = '\0';
-		return (ptr);
+		out[i] = s1[i];
+		i++;
 	}
-	if (len > (ft_strlen(s) - start))
-		len = ft_strlen(s) - start;
-	ptr = malloc(sizeof(char) * len + 1);
-	if (ptr == NULL)
-		return (NULL);
-	ft_memcpy(ptr, s + start, len);
-	ptr[len] = '\0';
-	return (ptr);
+	while (j < len_s2)
+	{
+		out[j + i] = s2[j];
+		j++;
+	}
+	out[j + i] = '\0';
+	return (out);
 }
