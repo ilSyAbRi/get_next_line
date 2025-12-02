@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:29:44 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/02 17:14:40 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/02 18:08:37 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
+	if (!s1)
+	{
+		s1 = malloc(1) if (!s1) return (NULL);
+		s1[0] = '\0';
+	}
+	if (!s2)
+		return (NULL);
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
 	out = malloc(len_s1 + len_s2 + 1);
 	if (out == NULL)
 		return (NULL);
-	while (i < len_s1)
-	{
-		out[i] = s1[i];
-		i++;
-	}
-	while (j < len_s2)
-	{
-		out[j + i] = s2[j];
-		j++;
-	}
-	out[j + i] = '\0';
+	ft_strlcpy(out, s1, len_s1 + 1);
+	ft_strlcpy(out + len_s1, s2, len_s2 + 1);
+	free(s1);
 	return (out);
 }
