@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:05:31 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/02 17:01:23 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/02 18:23:41 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,11 @@ char *get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return NULL;
-	if (stash == NULL)
-	{
-		stash = malloc(1);
-		if (stash == NULL)
-			return NULL;
-		stash[0] = '\0';
-	}
-	while (read_byte = read(fd,buffer,BUFFER_SIZE) > 0)
+	while ((read_byte = read(fd,buffer,BUFFER_SIZE)) > 0)
 	{
 		buffer[read_byte] = '\0';
-		tmp = stash;
 		stash = ft_strjoin(stash,buffer);
-		free(tmp);
-		if (ft_strchr(stash,'\n'));
+		if (ft_strchr(stash,'\n'))
 			break;
 	}
 	/*line = extract_line(stash);
