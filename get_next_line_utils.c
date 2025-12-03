@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:29:44 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/03 17:08:30 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:48:58 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	size_t	len_s1;
 	size_t	len_s2;
