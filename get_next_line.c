@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:05:31 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/03 00:14:38 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:40:11 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,40 @@ char	*extract_line(char *stash)
 	return (line);
 }
 
+char	*clean_stash(char *stash)
+{
+	int		i;
+	int		j;
+	char	*new_stash;
+
+	i = 0;
+	j = 0;
+	while (stash[i] != '\0' && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\0')
+	{
+		free(stash);
+		return (NULL);
+	}
+	new_stash = malloc(ft_strlen(stash + i + 1) + 1);
+	if (new_stash == NULL)
+		return (NULL);
+	i++;
+	while (stash[i])
+	{
+		new_stash[j] = stash[i];
+		i++;
+		j++;
+	}
+	new_stash[j] = '\0';
+	free(stash);
+	return (new_stash);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*stash;
+	char		*line;
 	char		buffer[BUFFER_SIZE + 1];
 	int			read_byte;
 
@@ -52,6 +83,6 @@ char	*get_next_line(int fd)
 			break ;
 	}
 	line = extract_line(stash);
-	// stash = clean_stash(stash);
+	stash = clean_stash(stash);
 	return (line);
 }
