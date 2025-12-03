@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:05:31 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/03 16:40:11 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:14:31 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,7 @@ char	*clean_stash(char *stash)
 	new_stash = malloc(ft_strlen(stash + i + 1) + 1);
 	if (new_stash == NULL)
 		return (NULL);
-	i++;
-	while (stash[i])
-	{
-		new_stash[j] = stash[i];
-		i++;
-		j++;
-	}
-	new_stash[j] = '\0';
+	ft_strlcpy(new_stash, stash + i + 1, ft_strlen(stash + i + 1) + 1);
 	free(stash);
 	return (new_stash);
 }
@@ -75,12 +68,14 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	while ((read_byte = read(fd, buffer, BUFFER_SIZE)) > 0)
+	read_byte = read(fd, buffer, BUFFER_SIZE);
+	while (read_byte > 0)
 	{
 		buffer[read_byte] = '\0';
 		stash = ft_strjoin(stash, buffer);
 		if (ft_strchr(stash, '\n'))
 			break ;
+		read_byte = read(fd, buffer, BUFFER_SIZE);
 	}
 	line = extract_line(stash);
 	stash = clean_stash(stash);
