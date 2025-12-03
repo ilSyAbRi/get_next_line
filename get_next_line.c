@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:05:31 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/03 17:14:31 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:21:27 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	read_byte = read(fd, buffer, BUFFER_SIZE);
+	if (read_byte < 0)
+		return (NULL);
 	while (read_byte > 0)
 	{
 		buffer[read_byte] = '\0';
