@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:05:31 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/04 02:34:43 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/04 03:36:45 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*extract_line(char *stash)
 
 	i = 0;
 	j = 0;
-	if (stash == NULL || stash[0] == '\0')
+	if (stash[0] == '\0')
 		return (NULL);
 	while (stash[i] != '\0' && stash[i] != '\n')
 		i++;
