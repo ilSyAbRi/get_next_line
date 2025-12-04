@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:05:31 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/03 17:29:25 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/04 02:07:11 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ char	*clean_stash(char *stash)
 		free(stash);
 		return (NULL);
 	}
-	new_stash = malloc(ft_strlen(stash + i + 1) + 1);
+	new_stash = malloc(ft_strlen(stash + i) + 1);
 	if (new_stash == NULL)
 		return (NULL);
-	ft_strlcpy(new_stash, stash + i + 1, ft_strlen(stash + i + 1) + 1);
+	ft_strlcpy(new_stash, stash + i + 1, ft_strlen(stash + i) + 1);
 	free(stash);
 	return (new_stash);
 }
@@ -61,14 +61,13 @@ char	*get_next_line(int fd)
 {
 	static char	*stash;
 	char		*line;
-	char		buffer[BUFFER_SIZE + 1];
+	char		*buffer;
 	int			read_byte;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+	buffer = malloc(BUFFER_SIZE + 1);
+	   if(buffer == NULL || fd < 0 || BUFFER_SIZE <= 0)
+                return NULL;
 	read_byte = read(fd, buffer, BUFFER_SIZE);
-	if (read_byte < 0)
-		return (NULL);
 	while (read_byte > 0)
 	{
 		buffer[read_byte] = '\0';
@@ -77,6 +76,9 @@ char	*get_next_line(int fd)
 			break ;
 		read_byte = read(fd, buffer, BUFFER_SIZE);
 	}
+	free(buffer);
+	if (read_byte < 0 || stash == NULL)
+		return NULL;
 	line = extract_line(stash);
 	stash = clean_stash(stash);
 	return (line);
