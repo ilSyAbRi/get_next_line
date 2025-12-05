@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:05:31 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/04 03:36:45 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/05 08:42:24 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*get_next_line(int fd)
 	}
 	free(buffer);
 	if (read_byte < 0 || stash == NULL)
-		return (NULL);
+		return (free(stash), NULL);
 	line = extract_line(stash);
 	stash = clean_stash(stash);
 	return (line);
