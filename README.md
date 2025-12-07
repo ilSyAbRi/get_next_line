@@ -15,4 +15,45 @@
 #### Forbidden:
 ```lseek, global variables, libft```
 
+### Test:
+
+#### Create test.txt
+``` vim test.txt and put this```
+```c
+Hello
+World
+42
+get_next_line test
+```
+### main.c:
+```vim main.c and put this```
+```c
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "get_next_line.h"
+
+int main(void)
+{
+    int fd = open("test.txt", O_RDONLY);
+    char *line;
+    while ((line = get_next_line(fd)))
+        printf("%s", line), free(line);
+}
+```
+### Compile & run:
+``` put any number more than 0 that you want read read by it in BUFFER_SIZE=(here)```
+
+```c
+cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 *.c
+./a.out
+```
+### Output:
+``` this <- just for explaination```
+```c
+Hello <- newline
+World
+42
+get_next_line test <-end of file
+```
 [***Click here to open the pdf subject for more detail***](get_next_line_subject.pdf)
