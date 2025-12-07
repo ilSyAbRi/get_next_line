@@ -4,16 +4,25 @@
 ***Each time it’s called, it returns the next line until the end of the file.***
 
 ### How it works:
-***It reads small chunks, stops at \n, returns one full line per call, saves the rest, and continues next time until it reaches the end of the file.***<br>
+***It reads small chunks, stops at \n, returns one full line per call.<br>
+saves the rest, and continues next time until it reaches the end of the file.***<br>
+ 
 ```Read → Newline → Return → Save → Repeat → EOF.```
 
 ### Notes / restrictions
 
-##### Allowed:
-```read, malloc, free```
+###### Allowed:```read, malloc, free```
 
-#### Forbidden:
-```lseek, global variables, libft```
+###### Forbidden:```lseek, global variables, libft```
+
+[***Click here to open the pdf subject for more detail***](get_next_line_subject.pdf)
+
+
+```
+^&^ '\n' ? EOF ? (:
+```
+
+---
 
 ### Test:
 
@@ -56,4 +65,3 @@ World
 42
 get_next_line test <-end of file
 ```
-[***Click here to open the pdf subject for more detail***](get_next_line_subject.pdf)
