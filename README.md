@@ -51,7 +51,10 @@ int main(void)
 }
 ```
 ### Compile & run:
-``` put any number more than 0 that you want read read by it in BUFFER_SIZE=(here)```
+``` 
+BUFFER_SIZE: It defines the chunk size used during file reading.
+You can replace 42 with any number greater than 0.
+```
 
 ```c
 cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 *.c
