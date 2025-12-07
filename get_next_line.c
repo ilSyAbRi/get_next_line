@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:05:31 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/05 08:42:24 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/07 11:58:50 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*extract_line(char *stash)
 
 	i = 0;
 	j = 0;
-	if (stash[0] == '\0')
+	if (stash == NULL || stash[0] == '\0')
 		return (NULL);
 	while (stash[i] != '\0' && stash[i] != '\n')
 		i++;
@@ -62,9 +62,9 @@ char	*get_next_line(int fd)
 	static char	*stash;
 	char		*line;
 	char		*buffer;
-	int			read_byte;
+	ssize_t		read_byte;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0)
 		return (NULL);
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
@@ -74,7 +74,7 @@ char	*get_next_line(int fd)
 	{
 		buffer[read_byte] = '\0';
 		stash = ft_strjoin(stash, buffer);
-		if (ft_strchr(stash, '\n'))
+		if (check_newline_or_null(stash, '\n'))
 			break ;
 		read_byte = read(fd, buffer, BUFFER_SIZE);
 	}

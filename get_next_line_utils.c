@@ -6,7 +6,7 @@
 /*   By: ilsyabri <ilsyabri@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 14:29:44 by ilsyabri          #+#    #+#             */
-/*   Updated: 2025/12/04 02:08:15 by ilsyabri         ###   ########.fr       */
+/*   Updated: 2025/12/07 11:59:22 by ilsyabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,22 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+int	check_newline_or_null(const char *s, int c)
 {
 	int	i;
 
 	i = 0;
+	if (s == NULL)
+		return (1);
 	while (s[i])
 	{
 		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+			return (1);
 		i++;
 	}
 	if (s[i] == (char)c)
-		return ((char *)&s[i]);
-	return (NULL);
+		return (1);
+	return (0);
 }
 
 void	ft_strlcpy(char *dst, const char *src, size_t size)
